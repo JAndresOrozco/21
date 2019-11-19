@@ -1,6 +1,8 @@
 package com.example.design;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Integer numero = 0;
     String nombre = "Andres";
+    ArrayList<Usuario> listaUsuario;
+    RecyclerView recyclerView;
 
 
     @Override
@@ -83,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fRequestQueue.add(jsonObjectRequest);
 
     }
+    public void eliminar(View view){
+        elimina();
+    }
     private void numero() {
         String url = "http://ramiro174.com/api/numero";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -121,15 +128,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void obtener(View view) {
-
         Intent intent= new Intent (MainActivity.this, ObtenerNumero.class);
         startActivity(intent);
+    }
+
+    private  void elimina(){
+        String url = "http://ramiro174.com/api/borrar/numero";
+        JsonObjectRequest request =  new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(MainActivity.this, "Datos Borrados", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("OnErrorResponse: ", error.toString());
+            }
+        });
+
+        fRequestQueue.add(request);
+    }
+
     }
 
 
 
 
-}
+
 
 
 

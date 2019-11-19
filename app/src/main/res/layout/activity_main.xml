@@ -49,11 +49,11 @@
             android:id="@+id/btn_numero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_numero3"
             android:layout_gravity="bottom|center"
             android:layout_weight="1"
             android:onClick="agregar"
-            android:layout_below="@+id/btn_numero3"
-            android:text="Agregar un número" />
+            android:text="Número" />
 
         <Button
             android:id="@+id/btn_mostrar"
@@ -63,6 +63,14 @@
             android:layout_below="@+id/btn_numero4"
             android:onClick="obtener"
             android:text="Mostrar" />
+        <Button
+            android:id="@+id/btn_eliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_below="@+id/btn_mostrar"
+            android:onClick="eliminar"
+            android:text="Eliminar" />
     </LinearLayout>
 
     <LinearLayout

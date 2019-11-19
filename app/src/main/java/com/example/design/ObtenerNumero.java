@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,11 +23,12 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class ObtenerNumero extends AppCompatActivity {
+public class ObtenerNumero extends AppCompatActivity{
     private RequestQueue fRequestQueue;
     private VolleyS volley;
     ArrayList<Usuario> listaUsuario;
     RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +37,16 @@ public class ObtenerNumero extends AppCompatActivity {
 
         fRequestQueue = volley.getRequestQueue();
         obtener();
+
     }
+
 
     public void obtener() {
         listaUsuario = new ArrayList<>();
         recyclerView = findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         String url = "http://ramiro174.com/api/obtener/numero";
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
